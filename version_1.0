@@ -1,0 +1,356 @@
+package Traveling_Ticket;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Travelling {
+
+	private JFrame frame;
+	private JTextField txtTax;
+	private JTextField txtSubTotal;
+	private JTextField txtTotal;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Travelling window = new Travelling();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Travelling() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(0, 0, 1370, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel.setBounds(16, 24, 1317, 63);
+		frame.getContentPane().add(panel);
+		
+		JLabel lblNewLabel = new JLabel("Travel Ticketing System");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		panel.add(lblNewLabel);
+		
+		JLabel lblTicketClass = new JLabel("TicketClass");
+		lblTicketClass.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		lblTicketClass.setBounds(99, 99, 126, 40);
+		frame.getContentPane().add(lblTicketClass);
+		
+		JRadioButton rdbtnStandard = new JRadioButton("Standard");
+		rdbtnStandard.setBounds(16, 163, 141, 23);
+		frame.getContentPane().add(rdbtnStandard);
+		
+		JRadioButton rdbtnEconomy = new JRadioButton("Economy");
+		rdbtnEconomy.setBounds(16, 212, 141, 23);
+		frame.getContentPane().add(rdbtnEconomy);
+		
+		JRadioButton rdbtnFirstClass = new JRadioButton("First Class");
+		rdbtnFirstClass.setBounds(16, 264, 141, 23);
+		frame.getContentPane().add(rdbtnFirstClass);
+		
+		JRadioButton rdbtnReturnTicket = new JRadioButton("Return Ticket");
+		rdbtnReturnTicket.setBounds(169, 212, 141, 23);
+		frame.getContentPane().add(rdbtnReturnTicket);
+		
+		JRadioButton rdbtnSingleTicket = new JRadioButton("Single Ticket");
+		rdbtnSingleTicket.setBounds(169, 163, 141, 23);
+		frame.getContentPane().add(rdbtnSingleTicket);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(16, 139, 294, 12);
+		frame.getContentPane().add(separator);
+		
+		JComboBox cmbDestination = new JComboBox();
+		cmbDestination.setModel(new DefaultComboBoxModel(new String[] {"Destiantion", "Berlin", "Frankfurt", "Munich", "Stuttgart"}));
+		cmbDestination.setBounds(169, 264, 126, 27);
+		frame.getContentPane().add(cmbDestination);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(16, 328, 294, 12);
+		frame.getContentPane().add(separator_1);
+		
+		JLabel lblTax = new JLabel("Tax");
+		lblTax.setBounds(26, 352, 61, 16);
+		frame.getContentPane().add(lblTax);
+		
+		JLabel lblSubtotal = new JLabel("SubTotal");
+		lblSubtotal.setBounds(26, 410, 61, 16);
+		frame.getContentPane().add(lblSubtotal);
+		
+		JLabel lblTotal = new JLabel("Total");
+		lblTotal.setBounds(26, 460, 61, 16);
+		frame.getContentPane().add(lblTotal);
+		
+		txtTax = new JTextField();
+		txtTax.setBounds(173, 347, 130, 26);
+		frame.getContentPane().add(txtTax);
+		txtTax.setColumns(10);
+		
+		txtSubTotal = new JTextField();
+		txtSubTotal.setBounds(173, 405, 130, 26);
+		frame.getContentPane().add(txtSubTotal);
+		txtSubTotal.setColumns(10);
+		
+		txtTotal = new JTextField();
+		txtTotal.setBounds(169, 455, 130, 26);
+		frame.getContentPane().add(txtTotal);
+		txtTotal.setColumns(10);
+		
+		JButton btnNewButton_2 = new JButton("Exit");
+		btnNewButton_2.setToolTipText("Exit System");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Here the System ask the user is he/she want to EXIT or Not . 
+				frame = new JFrame("Exit");
+				if(JOptionPane.showConfirmDialog(frame, "Confirm if you want to Exit" , "Ticketing System", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION ){
+				System.exit(0);
+				}
+			}
+		});
+		btnNewButton_2.setBounds(255, 530, 117, 29);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(16, 506, 294, 12);
+		frame.getContentPane().add(separator_2);
+		
+		JLabel lblClass = new JLabel("Class");
+		lblClass.setBounds(520, 114, 61, 16);
+		frame.getContentPane().add(lblClass);
+		
+		JLabel lblTicket = new JLabel("Ticket");
+		lblTicket.setBounds(635, 114, 61, 16);
+		frame.getContentPane().add(lblTicket);
+		
+		JLabel lblAdult = new JLabel("Adult");
+		lblAdult.setBounds(753, 114, 61, 16);
+		frame.getContentPane().add(lblAdult);
+		
+		JLabel lblChild = new JLabel("Child");
+		lblChild.setBounds(869, 114, 61, 16);
+		frame.getContentPane().add(lblChild);
+		
+		JTextArea textClass = new JTextArea();
+		textClass.setBounds(493, 142, 101, 23);
+		frame.getContentPane().add(textClass);
+		
+		JTextArea textTicket = new JTextArea();
+		textTicket.setBounds(611, 142, 101, 23);
+		frame.getContentPane().add(textTicket);
+		
+		JTextArea textAdult = new JTextArea();
+		textAdult.setBounds(724, 142, 101, 23);
+		frame.getContentPane().add(textAdult);
+		
+		JTextArea textChild = new JTextArea();
+		textChild.setBounds(846, 142, 101, 23);
+		frame.getContentPane().add(textChild);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(477, 192, 598, 12);
+		frame.getContentPane().add(separator_3);
+		
+		JRadioButton rdbtnChild = new JRadioButton("Child");
+		rdbtnChild.setBounds(16, 299, 141, 23);
+		frame.getContentPane().add(rdbtnChild);
+		
+		JRadioButton rdbtnAdult = new JRadioButton("Adult");
+		rdbtnAdult.setBounds(169, 303, 141, 23);
+		frame.getContentPane().add(rdbtnAdult);
+		
+		JLabel lblFrom = new JLabel("From");
+		lblFrom.setBounds(493, 268, 61, 16);
+		frame.getContentPane().add(lblFrom);
+		
+		JLabel lblDate = new JLabel("Date");
+		lblDate.setBounds(493, 367, 61, 16);
+		frame.getContentPane().add(lblDate);
+		
+		JLabel lblTime = new JLabel("Time");
+		lblTime.setBounds(493, 410, 61, 16);
+		frame.getContentPane().add(lblTime);
+		
+		JLabel lblTo = new JLabel("To");
+		lblTo.setBounds(493, 324, 61, 16);
+		frame.getContentPane().add(lblTo);
+		
+		JTextArea textFrom = new JTextArea();
+		textFrom.setBounds(595, 268, 101, 23);
+		frame.getContentPane().add(textFrom);
+		
+		JTextArea textTo = new JTextArea();
+		textTo.setBounds(595, 328, 101, 23);
+		frame.getContentPane().add(textTo);
+		
+		JTextArea textDate = new JTextArea();
+		textDate.setBounds(595, 367, 101, 23);
+		frame.getContentPane().add(textDate);
+		
+		JTextArea textTime = new JTextArea();
+		textTime.setBounds(595, 410, 101, 23);
+		frame.getContentPane().add(textTime);
+		
+		JLabel lblTicketno = new JLabel("TicketNo");
+		lblTicketno.setBounds(886, 268, 61, 16);
+		frame.getContentPane().add(lblTicketno);
+		
+		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setBounds(886, 328, 61, 16);
+		frame.getContentPane().add(lblPrice);
+		
+		JLabel lblRoute = new JLabel("Route");
+		lblRoute.setBounds(886, 394, 61, 16);
+		frame.getContentPane().add(lblRoute);
+		
+		JTextArea textTicketNo = new JTextArea();
+		textTicketNo.setBounds(974, 268, 101, 23);
+		frame.getContentPane().add(textTicketNo);
+		
+		JTextArea textPrice = new JTextArea();
+		textPrice.setBounds(974, 328, 101, 23);
+		frame.getContentPane().add(textPrice);
+		
+		JTextArea textRoute = new JTextArea();
+		textRoute.setBounds(974, 394, 101, 23);
+		frame.getContentPane().add(textRoute);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(477, 506, 598, 12);
+		frame.getContentPane().add(separator_4);
+		
+		JButton btnTotal = new JButton("Total");
+		btnTotal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				double tax = 19.30;
+				double MilesK8 = 34.84;
+				double MilesK12 = 33.22;
+				double Miles20 = 43.42;
+				double MilesK30 = 34.32;
+				double totalCost, eco = 4.34 , fclass = 4.43;
+				
+				if((rdbtnStandard.isSelected()) && (rdbtnSingleTicket.isSelected()) && (rdbtnAdult.isSelected()) && cmbDestination.getSelectedItem().equals("Frankfurt")) {
+					
+					totalCost = (tax * MilesK8) / 100;
+					String sTax = String.format("₤%.2f", totalCost);
+					txtTax.setText(sTax);
+					String subTotal =String.format("₤%.2f", MilesK8);
+					txtSubTotal.setText(subTotal);
+					String Total = String.format("₤%.2f", MilesK8 + totalCost);
+					txtTotal.setText(Total);
+					textPrice.setText(Total);
+					textClass.setText("STD");
+					textTicket.setText("One Way");
+					textAdult.setText("One");
+					textChild.setText("Nil");
+
+					
+				}
+						
+			}
+		});
+		btnTotal.addActionListener(new ActionListener() {
+			
+			//  ----TIME----
+			
+			public void actionPerformed(ActionEvent arg0) {
+			Calendar timer = Calendar.getInstance();
+			timer.getTime();
+			SimpleDateFormat tTime = new SimpleDateFormat ("HH:mm:ss");
+			textTime.setText(tTime.format(timer.getTime()));
+			
+			// --Date.....
+			
+			SimpleDateFormat Tdate = new SimpleDateFormat ("dd-MM-yyyy");
+			textDate.setText((String) cmbDestination.getSelectedItem()+ " *");
+			
+			
+			// --- Random Number Generator ----
+			
+			int num1;
+			String q1 = "";
+			num1 = 1325 + (int) (Math.random()*4854);
+			q1 += 1325;
+			textTicketNo.setText(q1);
+			
+			// -------------------------------
+			textRoute.setText("Any");
+			
+			
+			}
+			
+		});
+		btnTotal.setToolTipText("Total");
+		btnTotal.setBounds(6, 530, 117, 29);
+		frame.getContentPane().add(btnTotal);
+		
+		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtTax.setText(null);
+				txtSubTotal.setText(null);
+				txtTotal.setText(null);
+				textTicket.setText(null);
+				textAdult.setText(null);
+				textChild.setText(null);
+				textClass.setText(null);
+
+
+				rdbtnEconomy.setSelected(false);
+				rdbtnFirstClass.setSelected(false);
+				rdbtnChild.setSelected(false);
+				rdbtnAdult.setSelected(false);
+				rdbtnStandard.setSelected(false);
+				rdbtnSingleTicket.setSelected(false);
+				rdbtnReturnTicket.setSelected(false);
+				cmbDestination.setSelectedItem("Destination");
+				
+			}
+		});
+		btnReset.setBounds(126, 530, 117, 29);
+		frame.getContentPane().add(btnReset);
+	}
+}
